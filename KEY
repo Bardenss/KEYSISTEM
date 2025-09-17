@@ -1,0 +1,367 @@
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local player = Players.LocalPlayer
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local FREE_KEY = "FREE_4566"
+local VIP_LIST_URL = "https://raw.githubusercontent.com/Bardenss/aduhbantai/refs/heads/main/vip.json"
+local accessLevel = "none"
+
+-- Foto profil Roblox
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size420x420
+local content, _ = Players:GetUserThumbnailAsync(player.UserId, thumbType, thumbSize)
+
+-- === GUI ===
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 600, 0, 300)
+Frame.Position = UDim2.new(0.5, -300, 0.5, -150)
+Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
+Frame.BorderSizePixel = 0
+Frame.ClipsDescendants = true
+Frame.Parent = ScreenGui
+
+-- Foto profil (kiri)
+local Avatar = Instance.new("ImageLabel")
+Avatar.Size = UDim2.new(0, 260, 0, 260)
+Avatar.Position = UDim2.new(0, 20, 0.5, -130)
+Avatar.BackgroundTransparency = 1
+Avatar.Image = content
+Avatar.Parent = Frame
+
+-- Container kanan
+local Right = Instance.new("Frame")
+Right.Size = UDim2.new(0, 300, 0, 260)
+Right.Position = UDim2.new(0, 300, 0.5, -130)
+Right.BackgroundTransparency = 1
+Right.Parent = Frame
+
+-- Nama player
+local NameLabel = Instance.new("TextLabel")
+NameLabel.Size = UDim2.new(1,0,0,30)
+NameLabel.Position = UDim2.new(0,0,0,10)
+NameLabel.Text = ""
+NameLabel.Font = Enum.Font.Arcade
+NameLabel.TextColor3 = Color3.fromRGB(0,255,200)
+NameLabel.TextSize = 22
+NameLabel.BackgroundTransparency = 1
+NameLabel.Parent = Right
+
+-- Salam / teks tambahan
+local greet = Instance.new("TextLabel")
+greet.Size = UDim2.new(1,0,0,25)
+greet.Position = UDim2.new(0,0,0,50)
+greet.Text = ""
+greet.Font = Enum.Font.Arcade
+greet.TextColor3 = Color3.fromRGB(255,255,0)
+greet.TextSize = 18
+greet.BackgroundTransparency = 1
+greet.Parent = Right
+
+-- Input key
+local Input = Instance.new("TextBox")
+Input.Size = UDim2.new(1,0,0,30)
+Input.Position = UDim2.new(0,0,0,90)
+Input.PlaceholderText = "Masukkan key..."
+Input.Text = ""
+Input.BackgroundColor3 = Color3.fromRGB(40,40,70)
+Input.TextColor3 = Color3.fromRGB(255,255,255)
+Input.Font = Enum.Font.Arcade
+Input.TextSize = 16
+Input.Visible = false
+Input.Parent = Right
+
+-- Tombol submit
+local Submit = Instance.new("TextButton")
+Submit.Size = UDim2.new(1,0,0,28)
+Submit.Position = UDim2.new(0,0,0,130)
+Submit.Text = "UNLOCK"
+Submit.BackgroundColor3 = Color3.fromRGB(0,200,120)
+Submit.TextColor3 = Color3.fromRGB(0,0,0)
+Submit.Font = Enum.Font.Arcade
+Submit.TextSize = 16
+Submit.Visible = false
+Submit.Parent = Right
+
+-- Tombol Discord (akan muncul hanya free)
+local DiscordBtn = Instance.new("TextButton")
+DiscordBtn.Size = UDim2.new(1,0,0,28)
+DiscordBtn.Position = UDim2.new(0,0,0,170)
+DiscordBtn.Text = "JOIN DISCORD"
+DiscordBtn.BackgroundColor3 = Color3.fromRGB(88,101,242)
+DiscordBtn.TextColor3 = Color3.fromRGB(255,255,255)
+DiscordBtn.Font = Enum.Font.Arcade
+DiscordBtn.TextSize = 16
+DiscordBtn.Visible = false
+DiscordBtn.Parent = Right
+
+-- Tombol Help (pojok kiri bawah Frame)
+local HelpBtn = Instance.new("TextButton")
+HelpBtn.Size = UDim2.new(0,80,0,25)
+HelpBtn.Position = UDim2.new(0,10,1,-35)
+HelpBtn.Text = "HELP"
+HelpBtn.BackgroundColor3 = Color3.fromRGB(200,200,50)
+HelpBtn.TextColor3 = Color3.fromRGB(0,0,0)
+HelpBtn.Font = Enum.Font.Arcade
+HelpBtn.TextSize = 14
+HelpBtn.Visible = false
+HelpBtn.Parent = Frame
+
+-- Notif kecil
+local Notif = Instance.new("TextLabel")
+Notif.Size = UDim2.new(1,0,0,20)
+Notif.Position = UDim2.new(0,0,1,-20)
+Notif.BackgroundTransparency = 1
+Notif.TextColor3 = Color3.fromRGB(0,255,0)
+Notif.TextSize = 14
+Notif.Font = Enum.Font.Arcade
+Notif.Text = ""
+Notif.Parent = Frame
+
+-- Fungsi notif
+local function showNotif(msg,color)
+    Notif.Text = msg
+    Notif.TextColor3 = color or Color3.fromRGB(0,255,0)
+    task.delay(2,function() Notif.Text = "" end)
+end
+
+-- Fungsi bunga jatuh
+local function spawnFlower(color)
+    local flower = Instance.new("TextLabel")
+    flower.Size = UDim2.new(0,20,0,20)
+    flower.Text = "✿"
+    flower.TextColor3 = color
+    flower.BackgroundTransparency = 1
+    flower.Font = Enum.Font.Arcade
+    flower.TextSize = 20
+    flower.Position = UDim2.new(math.random(),0,0,-20)
+    flower.Parent = Frame
+
+    task.spawn(function()
+        local speed = math.random(30,60)/100
+        for i=1,120 do
+            flower.Position = flower.Position + UDim2.new(0, math.sin(i/10)*1, 0, speed*5)
+            flower.TextTransparency = i/120
+            task.wait(0.05)
+        end
+        flower:Destroy()
+    end)
+end
+
+-- Fungsi animasi
+local function playAnimations(isVIP)
+    Avatar.Visible = true
+
+    -- Nama typewriter
+    for i=1,#player.Name do
+        NameLabel.Text = string.sub(player.Name,1,i)
+        task.wait(0.1)
+    end
+
+    if isVIP then
+        task.spawn(function()
+            while ScreenGui.Parent do
+                spawnFlower(Color3.fromRGB(math.random(200,255), math.random(180,220), 0))
+                spawnFlower(Color3.fromRGB(180,0,220))
+                task.wait(0.5)
+            end
+        end)
+
+        task.wait(0.5)
+        NameLabel.Visible = false
+
+        local vipText = Instance.new("TextLabel")
+        vipText.Size = UDim2.new(1,0,0,50)
+        vipText.Position = UDim2.new(0,0,0,70)
+        vipText.Text = ""
+        vipText.Font = Enum.Font.Arcade
+        vipText.TextColor3 = Color3.fromRGB(255,215,0)
+        vipText.TextSize = 24
+        vipText.BackgroundTransparency = 1
+        vipText.Parent = Right
+
+        for i=1,#"WELCOME VIP USER" do
+            vipText.Text = string.sub("WELCOME VIP USER",1,i)
+            task.wait(0.1)
+        end
+
+        task.delay(2, function()
+            accessLevel = "vip"
+            ScreenGui:Destroy()
+        end)
+
+    else
+        local greets = {"Halo","Hello","こんにちは","Hola","Ciao","안녕"}
+        task.spawn(function()
+            while true do
+                for _,txt in ipairs(greets) do
+                    greet.Text = txt.." "..player.Name.."!"
+                    task.wait(2)
+                end
+            end
+        end)
+
+        task.spawn(function()
+            while ScreenGui.Parent do
+                spawnFlower(Color3.fromRGB(255,150,255))
+                task.wait(0.5)
+            end
+        end)
+
+        task.delay(3, function()
+            Input.Visible = true
+            Submit.Visible = true
+            DiscordBtn.Visible = true
+            HelpBtn.Visible = true
+        end)
+    end
+end
+
+-- Logic Key
+local function unlock(level)
+    accessLevel = level
+    ScreenGui:Destroy()
+end
+
+-- Event tombol
+DiscordBtn.MouseButton1Click:Connect(function()
+    setclipboard("https://discord.gg/VjYh9fVn")
+    showNotif("Link Discord dicopy!", Color3.fromRGB(0,200,255))
+end)
+
+HelpBtn.MouseButton1Click:Connect(function()
+    showNotif("Gunakan key FREE_4566 atau beli VIP.", Color3.fromRGB(255,255,0))
+end)
+
+-- Cek VIP
+local function isVIPUser()
+    local ok, data = pcall(function()
+        return HttpService:JSONDecode(game:HttpGet(VIP_LIST_URL))
+    end)
+    if ok and data and data.vip_users then
+        for _, name in ipairs(data.vip_users) do
+            if name == player.Name then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+local vipUser = isVIPUser()
+
+if vipUser then
+    playAnimations(true)
+else
+    playAnimations(false)
+    Submit.MouseButton1Click:Connect(function()
+        if Input.Text == FREE_KEY then
+            unlock("free")
+        else
+            greet.Text = "❌ Key salah!"
+        end
+    end)
+end
+
+repeat task.wait() until accessLevel ~= "none"
+
+-- === GUI Kedua: Pilih Script ===
+local ActionGui = Instance.new("ScreenGui")
+ActionGui.Parent = game.CoreGui
+ActionGui.IgnoreGuiInset = true
+
+local Frame2 = Instance.new("Frame")
+Frame2.Size = UDim2.new(0, 380, 0, 300)
+Frame2.Position = UDim2.new(0.5, -190, 0.5, -150)
+Frame2.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Frame2.BorderSizePixel = 0
+Frame2.Parent = ActionGui
+
+local Title2 = Instance.new("TextLabel")
+Title2.Size = UDim2.new(1,0,0,40)
+Title2.BackgroundTransparency = 1
+Title2.Text = "📂 Pilih Script"
+Title2.Font = Enum.Font.Arcade -- ganti font
+Title2.TextSize = 20
+Title2.TextColor3 = Color3.fromRGB(255,255,255)
+Title2.Parent = Frame2
+
+local Scroll = Instance.new("ScrollingFrame")
+Scroll.Size = UDim2.new(1,0,1,-50)
+Scroll.Position = UDim2.new(0,0,0,50)
+Scroll.CanvasSize = UDim2.new(0,0,0,0)
+Scroll.ScrollBarThickness = 6
+Scroll.BackgroundTransparency = 1
+Scroll.Parent = Frame2
+
+local UIList = Instance.new("UIGridLayout")
+UIList.CellSize = UDim2.new(0,110,0,40)
+UIList.CellPadding = UDim2.new(0,8,0,8)
+UIList.FillDirection = Enum.FillDirection.Horizontal
+UIList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIList.SortOrder = Enum.SortOrder.LayoutOrder
+UIList.Parent = Scroll
+
+-- Definisi scripts
+local tabs = {
+    {Name="Daun", URL="https://raw.githubusercontent.com/Bardenss/DAUNV2/refs/heads/main/main", Locked=false},
+    {Name="Arunika", URL="https://raw.githubusercontent.com/Bardenss/ARUNIKA/refs/heads/main/main", Locked=true},
+    {Name="Antartika", URL="https://raw.githubusercontent.com/Bardenss/ANTARTIKA/refs/heads/main/main", Locked=true},
+}
+
+-- Tambahkan tombol
+for _, tab in ipairs(tabs) do
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(1,0,1,0)
+    btn.TextColor3 = Color3.fromRGB(255,255,255)
+    btn.Font = Enum.Font.Arcade -- ganti font
+    btn.TextSize = 16
+    btn.Parent = Scroll
+
+    if accessLevel == "vip" then
+        btn.BackgroundColor3 = Color3.fromRGB(60,120,255)
+        btn.Text = tab.Name
+    else
+        if tab.Locked then
+            btn.BackgroundColor3 = Color3.fromRGB(100,100,100)
+            btn.Text = tab.Name.." 🔒"
+        else
+            btn.BackgroundColor3 = Color3.fromRGB(60,120,255)
+            btn.Text = tab.Name
+        end
+    end
+
+    local clicked = false
+    btn.MouseButton1Click:Connect(function()
+        if clicked then return end
+        clicked = true
+        if tab.Locked and accessLevel ~= "vip" then
+            warn("Tab terkunci untuk Free user!")
+            return
+        end
+        local success, err = pcall(function()
+            loadstring(game:HttpGet(tab.URL))()
+        end)
+        if not success then
+            warn("Failed to load:", err)
+        end
+        ActionGui:Destroy()
+    end)
+end
+
+-- Update CanvasSize otomatis
+task.spawn(function()
+    while task.wait(0.1) do
+        Scroll.CanvasSize = UDim2.new(0,0,0,UIList.AbsoluteContentSize.Y)
+    end
+end)
