@@ -9,7 +9,7 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 local FREE_KEY = "FREE_4566"
-local VIP_LIST_URL = "https://raw.githubusercontent.com/Bardenss/aduhbantai/refs/heads/main/vip.json"
+local VIP_LIST_URL = "https://raw.githubusercontent.com/Bardenss/KEYSISTEM/refs/heads/main/vip.json"
 local accessLevel = "none"
 
 -- Foto profil Roblox
