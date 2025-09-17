@@ -235,7 +235,7 @@ end
 
 -- Event tombol
 DiscordBtn.MouseButton1Click:Connect(function()
-    setclipboard("https://discord.gg/VjYh9fVn")
+    setclipboard("https://discord.gg/TBRnN4Bt")
     showNotif("Link Discord dicopy!", Color3.fromRGB(0,200,255))
 end)
 
