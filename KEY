@@ -278,6 +278,7 @@ if accessLevel == "vip" then
         [128473079243102]  = "https://raw.githubusercontent.com/Bardenss/ARUNIKA-V2/refs/heads/main/Main", -- Arunika
         [2693023319]  = "https://raw.githubusercontent.com/Bardenss/ANTARTIKA/refs/heads/main/Main", -- Antartika
         [123224294054165]  = "https://raw.githubusercontent.com/Bardenss/ATIN/refs/heads/main/Main", -- Atin
+        [76964310785698]  = "https://raw.githubusercontent.com/Bardenss/YAHAYUK/refs/heads/main/Main",
     }
 
     local url = autoScripts[game.PlaceId]
@@ -335,6 +336,7 @@ local tabs = {
     {Name="Arunika", URL="https://raw.githubusercontent.com/Bardenss/ARUNIKA-V2/refs/heads/main/Main", Locked=true},
     {Name="Antartika", URL="https://raw.githubusercontent.com/Bardenss/ANTARTIKA/refs/heads/main/Main", Locked=true},
     {Name="Atin", URL="https://raw.githubusercontent.com/Bardenss/ATIN/refs/heads/main/Main", Locked=true},
+    {Name="Yahayuk", URL="https://raw.githubusercontent.com/Bardenss/YAHAYUK/refs/heads/main/Main", Locked=true},   
 }
 
 -- Tambahkan tombol
