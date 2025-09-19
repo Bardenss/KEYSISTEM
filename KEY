@@ -4,10 +4,6 @@ local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
 local player = Players.LocalPlayer
 
-local HttpService = game:GetService("HttpService")
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
 local FREE_KEY = "FREE_4566"
 local VIP_LIST_URL = "https://raw.githubusercontent.com/Bardenss/KEYSISTEM/refs/heads/main/vip.json"
 local accessLevel = "none"
@@ -93,7 +89,7 @@ Submit.TextSize = 16
 Submit.Visible = false
 Submit.Parent = Right
 
--- Tombol Discord (akan muncul hanya free)
+-- Tombol Discord
 local DiscordBtn = Instance.new("TextButton")
 DiscordBtn.Size = UDim2.new(1,0,0,28)
 DiscordBtn.Position = UDim2.new(0,0,0,170)
@@ -105,7 +101,7 @@ DiscordBtn.TextSize = 16
 DiscordBtn.Visible = false
 DiscordBtn.Parent = Right
 
--- Tombol Help (pojok kiri bawah Frame)
+-- Tombol Help
 local HelpBtn = Instance.new("TextButton")
 HelpBtn.Size = UDim2.new(0,80,0,25)
 HelpBtn.Position = UDim2.new(0,10,1,-35)
@@ -275,6 +271,27 @@ end
 
 repeat task.wait() until accessLevel ~= "none"
 
+-- === Auto Exec VIP ===
+if accessLevel == "vip" then
+    local autoScripts = {
+        [102234703920418] = "https://raw.githubusercontent.com/Bardenss/DAUNV2/refs/heads/main/main", -- Mount Daun
+        [128473079243102]  = "https://raw.githubusercontent.com/Bardenss/ARUNIKA-V2/refs/heads/main/Main", -- Arunika
+        [2693023319]  = "https://raw.githubusercontent.com/Bardenss/ANTARTIKA/refs/heads/main/Main", -- Antartika
+        [123224294054165]  = "https://raw.githubusercontent.com/Bardenss/ATIN/refs/heads/main/Main", -- Atin
+    }
+
+    local url = autoScripts[game.PlaceId]
+    if url then
+        local ok, err = pcall(function()
+            loadstring(game:HttpGet(url))()
+        end)
+        if not ok then
+            warn("Auto exec gagal:", err)
+        end
+        return -- langsung stop, gak lanjut ke GUI 2
+    end
+end
+
 -- === GUI Kedua: Pilih Script ===
 local ActionGui = Instance.new("ScreenGui")
 ActionGui.Parent = game.CoreGui
@@ -291,7 +308,7 @@ local Title2 = Instance.new("TextLabel")
 Title2.Size = UDim2.new(1,0,0,40)
 Title2.BackgroundTransparency = 1
 Title2.Text = "📂 Pilih Script"
-Title2.Font = Enum.Font.Arcade -- ganti font
+Title2.Font = Enum.Font.Arcade
 Title2.TextSize = 20
 Title2.TextColor3 = Color3.fromRGB(255,255,255)
 Title2.Parent = Frame2
@@ -325,7 +342,7 @@ for _, tab in ipairs(tabs) do
     local btn = Instance.new("TextButton")
     btn.Size = UDim2.new(1,0,1,0)
     btn.TextColor3 = Color3.fromRGB(255,255,255)
-    btn.Font = Enum.Font.Arcade -- ganti font
+    btn.Font = Enum.Font.Arcade
     btn.TextSize = 16
     btn.Parent = Scroll
 
