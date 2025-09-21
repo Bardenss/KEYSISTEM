@@ -280,6 +280,7 @@ if accessLevel == "vip" then
         [123224294054165]  = "https://raw.githubusercontent.com/Bardenss/ATIN/refs/heads/main/Main", -- Atin
         [76964310785698]  = "https://raw.githubusercontent.com/Bardenss/YAHAYUK/refs/heads/main/Main",
         [110564374807610]  = "https://raw.githubusercontent.com/Bardenss/HELL/refs/heads/main/Main",
+        [95777993643016]  = "https://raw.githubusercontent.com/Bardenss/RAVIKA/refs/heads/main/Main",
     }
 
     local url = autoScripts[game.PlaceId]
@@ -339,6 +340,7 @@ local tabs = {
     {Name="Atin", URL="https://raw.githubusercontent.com/Bardenss/ATIN/refs/heads/main/Main", Locked=true},
     {Name="Yahayuk", URL="https://raw.githubusercontent.com/Bardenss/YAHAYUK/refs/heads/main/Main", Locked=true},  
     {Name="Hell", URL="https://raw.githubusercontent.com/Bardenss/Hell/refs/heads/main/Main", Locked=true},  
+    {Name="Ravika", URL="https://raw.githubusercontent.com/Bardenss/RAVIKA/refs/heads/main/Main", Locked=true},  
 }
 
 -- Tambahkan tombol
