@@ -333,7 +333,7 @@ UIList.Parent = Scroll
 
 -- Definisi scripts
 local tabs = {
-    {Name="Daun", URL="https://raw.githubusercontent.com/Bardenss/DAUNV2/refs/heads/main/main", Locked=true},
+    {Name="Daun", URL="https://raw.githubusercontent.com/Bardenss/DAUNV2/refs/heads/main/main", Locked=false},
     {Name="Arunika", URL="https://raw.githubusercontent.com/Bardenss/ARUNIKA-V2/refs/heads/main/Main", Locked=true},
     {Name="Antartika", URL="https://raw.githubusercontent.com/Bardenss/ANTARTIKA/refs/heads/main/Main", Locked=true},
     {Name="Atin", URL="https://raw.githubusercontent.com/Bardenss/ATIN/refs/heads/main/Main", Locked=true},
