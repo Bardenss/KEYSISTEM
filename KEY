@@ -5,7 +5,7 @@ local TeleportService = game:GetService("TeleportService")
 local player = Players.LocalPlayer
 
 local FREE_KEY = "FREE_4566"
-local VIP_LIST_URL = "https://vipuser.byethost8.com/raw.php"
+local VIP_LIST_URL = "https://vipuser.byethost8.com/raw.php?i=1"
 local accessLevel = "none"
 
 -- Foto profil Roblox
