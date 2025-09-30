@@ -286,6 +286,7 @@ if accessLevel == "vip" then
         [131426428785096]  = "https://raw.githubusercontent.com/Bardenss/PASIR/refs/heads/main/Main",
         [120818739452640]  = "https://raw.githubusercontent.com/Bardenss/CKPTW/refs/heads/main/Main",
         [122362653380252]  = "https://raw.githubusercontent.com/Bardenss/HANA/refs/heads/main/Main",
+        [72916767403985]  = "https://raw.githubusercontent.com/Bardenss/BATU/refs/heads/main/Main",
     }
 
     local url = autoScripts[game.PlaceId]
@@ -351,6 +352,7 @@ local tabs = {
     {Name="Pasir", URL="https://raw.githubusercontent.com/Bardenss/PASIR/refs/heads/main/Main", Locked=true},
     {Name="CKPTW", URL="https://raw.githubusercontent.com/Bardenss/CKPTW/refs/heads/main/Main", Locked=true},
     {Name="Hana", URL="https://raw.githubusercontent.com/Bardenss/HANA/refs/heads/main/Main", Locked=true},
+    {Name="Batu", URL="https://raw.githubusercontent.com/Bardenss/BATU/refs/heads/main/Main", Locked=true},
 }
 
 -- Tambahkan tombol
