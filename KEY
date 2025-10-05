@@ -355,7 +355,6 @@ local tabs = {
     {Name="Hana", URL="https://raw.githubusercontent.com/Bardenss/HANA/refs/heads/main/Main", Locked=true},
     {Name="Batu", URL="https://raw.githubusercontent.com/Bardenss/BATU/refs/heads/main/Main", Locked=true},
     {Name="Salvastore", URL="https://raw.githubusercontent.com/Bardenss/SALVASTORE/refs/heads/main/Main", Locked=true},
-
 }
 
 -- Tambahkan tombol
