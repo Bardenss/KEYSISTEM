@@ -239,14 +239,17 @@ HelpBtn.MouseButton1Click:Connect(function()
     showNotif("Gunakan key FREE_4566 atau beli VIP.", Color3.fromRGB(255,255,0))
 end)
 
--- Cek VIP
+-- Cek VIP (case-insensitive)
 local function isVIPUser()
     local ok, data = pcall(function()
         return HttpService:JSONDecode(game:HttpGet(VIP_LIST_URL))
     end)
     if ok and data and data.vip_users then
+        -- ubah nama player jadi huruf kecil
+        local playerNameLower = string.lower(player.Name)
+
         for _, name in ipairs(data.vip_users) do
-            if name == player.Name then
+            if string.lower(name) == playerNameLower then
                 return true
             end
         end
