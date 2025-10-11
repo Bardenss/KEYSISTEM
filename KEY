@@ -291,7 +291,8 @@ if accessLevel == "vip" then
         [122362653380252]  = "https://raw.githubusercontent.com/Bardenss/HANA/refs/heads/main/Main",
         [72916767403985]  = "https://raw.githubusercontent.com/Bardenss/BATU/refs/heads/main/Main",
         [77520604867561]  = "https://raw.githubusercontent.com/Bardenss/SALVASTORE/refs/heads/main/Main",
-        [77520604867561]  = "https://raw.githubusercontent.com/Bardenss/SWISS/refs/heads/main/Main",
+        [122165169258616]  = "https://raw.githubusercontent.com/Bardenss/SWISS/refs/heads/main/Main",
+        [94835233942806]  = "https://raw.githubusercontent.com/Bardenss/PEDAUNAN/refs/heads/main/Main",
     }
 
     local url = autoScripts[game.PlaceId]
@@ -360,6 +361,7 @@ local tabs = {
     {Name="Batu", URL="https://raw.githubusercontent.com/Bardenss/BATU/refs/heads/main/Main", Locked=true},
     {Name="Salvastore", URL="https://raw.githubusercontent.com/Bardenss/SALVASTORE/refs/heads/main/Main", Locked=true},
     {Name="Swiss", URL="https://raw.githubusercontent.com/Bardenss/SWISS/refs/heads/main/Main", Locked=true},
+    {Name="Pedaunan", URL="https://raw.githubusercontent.com/Bardenss/PEDAUNAN/refs/heads/main/Main", Locked=true},
 }
 
 -- Tambahkan tombol
