@@ -293,6 +293,7 @@ if accessLevel == "vip" then
         [77520604867561]  = "https://raw.githubusercontent.com/Bardenss/SALVASTORE/refs/heads/main/Main",
         [122165169258616]  = "https://raw.githubusercontent.com/Bardenss/SWISS/refs/heads/main/Main",
         [94835233942806]  = "https://raw.githubusercontent.com/Bardenss/PEDAUNAN/refs/heads/main/Main",
+        [89047025631500]  = "https://raw.githubusercontent.com/Bardenss/PENGANGGURAN/refs/heads/main/Main",
     }
 
     local url = autoScripts[game.PlaceId]
@@ -362,6 +363,7 @@ local tabs = {
     {Name="Salvastore", URL="https://raw.githubusercontent.com/Bardenss/SALVASTORE/refs/heads/main/Main", Locked=true},
     {Name="Swiss", URL="https://raw.githubusercontent.com/Bardenss/SWISS/refs/heads/main/Main", Locked=true},
     {Name="Pedaunan", URL="https://raw.githubusercontent.com/Bardenss/PEDAUNAN/refs/heads/main/Main", Locked=true},
+    {Name="Pengangguran", URL="https://raw.githubusercontent.com/Bardenss/PENGANGGURAN/refs/heads/main/Main", Locked=true},
 }
 
 -- Tambahkan tombol
